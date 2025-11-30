@@ -9,6 +9,7 @@ vim.o.shiftwidth = 4
 vim.o.showtabline = 2
 vim.o.expandtab = true
 vim.o.softtabstop = 4
+vim.o.wrap = false
 
 vim.o.number = true
 vim.o.mouse = ''
@@ -24,7 +25,7 @@ vim.schedule(function()
 end)
 
 vim.o.updatetime = 250
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 2000
 
 vim.o.splitright = true
 vim.o.splitbelow = true
@@ -453,11 +454,13 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'sainnhe/gruvbox-material',
+    'catppuccin/nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
-      vim.g.gruvbox_material_transparent_background = 1
-      vim.cmd.colorscheme 'gruvbox-material'
+      require('catppuccin').setup({
+        transparent_background = false,
+      })
+      vim.cmd.colorscheme 'catppuccin-mocha'
     end,
   },
 
@@ -548,6 +551,15 @@ require('lazy').setup({
         },
     },
   },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },            -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
+  },
   {'akinsho/toggleterm.nvim', version = "*", config = true},
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
@@ -576,13 +588,12 @@ require('lazy').setup({
     },
   },
 })
+
 vim.api.nvim_create_autocmd("BufNewFile", {
-  pattern = "*daily.typ",
+  pattern = "*daily.md",
   callback = function()
-    vim.cmd("0r ~/realnotes/DailyNotes/Template.typ")
+    vim.cmd("0r ~/realnotes/DailyNotes/Template.md")
   end,
 })
-vim.cmd 'hi StatusLine guifg=#D7AF87'
-vim.cmd 'hi TabLine guibg=#303030'
-vim.cmd 'hi TabLineSel guibg=#DFBF8E'
 vim.cmd [[set completeopt+=menuone,noselect,popup]]
+
