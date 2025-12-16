@@ -89,18 +89,18 @@ require("lazy").setup({
 		opts = {},
 	},
 	-- Detect tabstop and shiftwidth automatically
-	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
-		"lewis6991/gitsigns.nvim",
-		opts = {
-			signs = {
-				add = { text = "+" },
-				change = { text = "~" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-			},
-		},
-	},
+--	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
+--		"lewis6991/gitsigns.nvim",
+--		opts = {
+--			signs = {
+--				add = { text = "+" },
+--				change = { text = "~" },
+--				delete = { text = "_" },
+--				topdelete = { text = "‾" },
+--				changedelete = { text = "~" },
+--			},
+--		},
+--	},
 	--  { -- Useful plugin to show you pending keybinds.
 	--    'folke/which-key.nvim',
 	--    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
@@ -207,7 +207,7 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 			vim.keymap.set("n", "<leader>/", function()
 				builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-					winblend = 10,
+					winblend = 0,
 					previewer = false,
 				}))
 			end, { desc = "[/] Fuzzily search in current buffer" })
@@ -695,7 +695,7 @@ require("lazy").setup({
 			notifier = { enabled = true },
 			quickfile = { enabled = true },
 			scope = { enabled = true },
-			scroll = { enabled = true },
+			scroll = { enabled = false },
 			statuscolumn = { enabled = true },
 			words = { enabled = true },
 			image = {
@@ -704,39 +704,39 @@ require("lazy").setup({
 			},
 		},
 	},
-	{
-		"obsidian-nvim/obsidian.nvim",
-		version = "*", -- recommended, use latest release instead of latest commit
-		ft = "markdown",
-		-- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-		-- event = {
-		--   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-		--   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-		--   -- refer to `:h file-pattern` for more examples
-		--   "BufReadPre path/to/my-vault/*.md",
-		--   "BufNewFile path/to/my-vault/*.md",
-		-- },
-		---@module 'obsidian'
-		---@type obsidian.config
-		opts = {
-			completion = {
-				blink = false,
-			},
-			legacy_commands = false, -- this will be removed in the next major release
-			workspaces = {
+--	{
+--		"obsidian-nvim/obsidian.nvim",
+--		version = "*", -- recommended, use latest release instead of latest commit
+--		ft = "markdown",
+--		-- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+--		-- event = {
+--		--   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+--		--   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
+--		--   -- refer to `:h file-pattern` for more examples
+--		--   "BufReadPre path/to/my-vault/*.md",
+--		--   "BufNewFile path/to/my-vault/*.md",
+--		-- },
+--		---@module 'obsidian'
+--		---@type obsidian.config
+--		opts = {
+--			completion = {
+--				blink = false,
+--			},
+--			legacy_commands = false, -- this will be removed in the next major release
+--			workspaces = {
+----				{
+----					name = "js",
+----					path = "~/Documents/zk/js/",
+----				},
 --				{
---					name = "js",
---					path = "~/Documents/zk/js/",
+--					name = "default",
+--					path = "~/Documents/zk/",
 --				},
-				{
-					name = "default",
-					path = "~/Documents/zk/",
-				},
-			},
-
-			-- see below for full list of options 👇
-		},
-	},
+--			},
+--
+--			-- see below for full list of options 👇
+--		},
+--	},
 	{ "akinsho/toggleterm.nvim", version = "*", config = true },
 	-- require 'kickstart.plugins.debug',
 	require 'kickstart.plugins.indent_line',
