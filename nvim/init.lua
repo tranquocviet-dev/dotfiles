@@ -33,16 +33,12 @@ vim.o.cursorline = false
 vim.o.scrolloff = 0
 vim.o.confirm = true
 -- Keymaps
-vim.keymap.set('v', '<leader>ol', '<cmd>ObsidianLink<CR>')
-vim.keymap.set('n', '<leader>sl', '<cmd>ObsidianTags<CR>')
-vim.keymap.set('v', '<leader>on', '<cmd>ObsidianLink<CR>')
-vim.keymap.set("n", "<leader>on", "<cmd>ObsidianNew<CR>")
-vim.keymap.set("n", "<leader>so", "<cmd>ObsidianQuickSwitch<CR>")
 --vim.keymap.set("n", "<C-d>", "<C-d>zz")
 --vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-p>", ":pu=strftime('%d-%m-%y')<CR>")
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<leader>w", "<cmd>update<CR>")
+vim.keymap.set("n", "<leader>q", "<cmd>quit<CR>")
 vim.keymap.set("n", "<leader>o", "<cmd>source<CR>")
 vim.keymap.set("n", "<leader>O", "<cmd>restart<CR>")
 vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>")
@@ -54,7 +50,7 @@ for i = 1, 8 do
 	vim.keymap.set({ "n", "t" }, "<Leader>" .. i, "<Cmd>tabnext " .. i .. "<CR>")
 end
 
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<leader>d", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
@@ -466,19 +462,6 @@ require("lazy").setup({
 		},
 	},
 	{ -- You can easily change to a different colorscheme.
-		-- Change the name of the colorscheme plugin below, and then
-		-- change the command in the config to whatever the name of that colorscheme is.
-		--
-		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
---		"catppuccin/nvim",
---		priority = 1000, -- Make sure to load this before all the other start plugins.
---		config = function()
---			require("catppuccin").setup({
---				auto_integrations = true,
---				transparent_background = false,
---			})
---			vim.cmd.colorscheme("catppuccin-mocha")
---		end,
 		'kepano/flexoki-neovim',
 		name = 'flexoki',
 		priority = 1000,
@@ -488,22 +471,6 @@ require("lazy").setup({
 			vim.cmd.colorscheme('flexoki')
 		end
 	},
-
-	--	{ -- You can easily change to a different colorscheme.
-	--		-- Change the name of the colorscheme plugin below, and then
-	--		-- change the command in the config to whatever the name of that colorscheme is.
-	--		--
-	--		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-	--		"folke/tokyonight.nvim",
-	--		priority = 1000, -- Make sure to load this before all the other start plugins.
-	--		config = function()
-	--			require("tokyonight").setup({
-	--				transparent_background = false,
-	--			})
-	--			vim.cmd.colorscheme("tokyonight")
-	--		end,
-	--	},
-
 	-- Highlight todo, notes, etc in comments
 	{
 		"folke/todo-comments.nvim",
@@ -546,15 +513,6 @@ require("lazy").setup({
 		},
 	},
 	{
-		"iamcco/markdown-preview.nvim",
-		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-		build = "cd app && yarn install",
-		init = function()
-			vim.g.mkdp_filetypes = { "markdown" }
-		end,
-		ft = { "markdown" },
-	},
-	{
 		"stevearc/oil.nvim",
 		---@module 'oil'
 		---@type oil.SetupOpts
@@ -592,154 +550,10 @@ require("lazy").setup({
 		version = "1.*",
 		opts = {}, -- lazy.nvim will implicitly calls `setup {}`
 	},
-	{
-		"ahmeds0s/manim_runner.nvim",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"akinsho/toggleterm.nvim",
-		},
-		keys = {
-			{
-				"<localleader>cm",
-				function()
-					require("manim.render").render_scene()
-				end,
-				desc = "Render manim scene under cursor",
-			},
-		},
-	},
-	--	{
-	--		"MeanderingProgrammer/render-markdown.nvim",
-	--		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
-	--		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
-	--		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-	--		---@module 'render-markdown'
-	--		---@type render.md.UserConfig
-	--		opts = {},
-	--		config = function()
-	--			require("render-markdown").setup({
-	--				render_modes = true,
-	--				anti_conceal = {
-	--					enabled = true,
-	--				},
-	--				pipe_table = {
-	--					render_modes = true,
-	--				},
-	--				heading = {
-	--					position = "inline",
-	--					sign = false,
-	--					width = "block",
-	--					min_width = 10,
-	--				},
-	--				code = {
-	--					width = "block",
-	--					left_pad = 2,
-	--					right_pad = 4,
-	--				},
-	--			})
-	--		end,
-	--	},
-	--	{
-	--		"zk-org/zk-nvim",
-	--		config = function()
-	--			require("zk").setup({
-	--				-- Can be "telescope", "fzf", "fzf_lua", "minipick", "snacks_picker",
-	--				-- or select" (`vim.ui.select`).
-	--				picker = "telescope",
-	--
-	--				lsp = {
-	--					-- `config` is passed to `vim.lsp.start(config)`
-	--					config = {
-	--						note_id_func = function(title)
-	--							-- Simple slugify: lowercase, replace spaces with hyphens
-	--							return title:gsub(" ", "-"):lower()
-	--						end,
-	--						name = "zk",
-	--						cmd = { "zk", "lsp" },
-	--						filetypes = { "markdown" },
-	--						-- on_attach = ...
-	--						-- etc, see `:h vim.lsp.start()`
-	--					},
-	--
-	--					-- automatically attach buffers in a zk notebook that match the given filetypes
-	--					auto_attach = {
-	--						enabled = true,
-	--					},
-	--				},
-	--			})
-	--		end,
-	--	},
 	-- For `plugins.lua` users.
-	{
-		"OXY2DEV/markview.nvim",
-		lazy = false,
-
-		-- Completion for `blink.cmp`
-		-- dependencies = { "saghen/blink.cmp" },
-	},
-	{
-		"folke/snacks.nvim",
-		priority = 1000,
-		lazy = false,
-		---@type snacks.Config
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-			bigfile = { enabled = true },
-			dashboard = { enabled = false },
-			explorer = { enabled = true },
-			indent = { enabled = false },
-			input = { enabled = true },
-			picker = { enabled = true },
-			notifier = { enabled = true },
-			quickfile = { enabled = true },
-			scope = { enabled = true },
-			scroll = { enabled = false },
-			statuscolumn = { enabled = true },
-			words = { enabled = true },
-			image = {
-				enabled = true,
-				force = false,
-			},
-		},
-	},
---	{
---		"obsidian-nvim/obsidian.nvim",
---		version = "*", -- recommended, use latest release instead of latest commit
---		ft = "markdown",
---		-- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
---		-- event = {
---		--   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
---		--   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
---		--   -- refer to `:h file-pattern` for more examples
---		--   "BufReadPre path/to/my-vault/*.md",
---		--   "BufNewFile path/to/my-vault/*.md",
---		-- },
---		---@module 'obsidian'
---		---@type obsidian.config
---		opts = {
---			completion = {
---				blink = false,
---			},
---			legacy_commands = false, -- this will be removed in the next major release
---			workspaces = {
-----				{
-----					name = "js",
-----					path = "~/Documents/zk/js/",
-----				},
---				{
---					name = "default",
---					path = "~/Documents/zk/",
---				},
---			},
---
---			-- see below for full list of options 👇
---		},
---	},
 	{ "akinsho/toggleterm.nvim", version = "*", config = true },
 	-- require 'kickstart.plugins.debug',
-	require 'kickstart.plugins.indent_line',
+	-- require 'kickstart.plugins.indent_line',
 	--require 'kickstart.plugins.lint',
 	require("kickstart.plugins.autopairs"),
 	--require 'kickstart.plugins.neo-tree',
@@ -773,3 +587,9 @@ vim.api.nvim_create_autocmd("BufNewFile", {
 	end,
 })
 vim.cmd([[set completeopt+=menuone,noselect,popup]])
+vim.cmd.highlight('MsgArea guibg=None')
+vim.cmd.highlight('StatusLine guibg=None')
+vim.cmd.highlight('TabLine guibg=None')
+vim.cmd.highlight('TabLineSel guibg=None')
+vim.cmd.highlight('TabLineSel guifg=#D0A215')
+vim.cmd.highlight('TabLineFill guibg=None')
