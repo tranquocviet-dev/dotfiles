@@ -1,0 +1,68 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "black": "#100F0F",
+    "red": "#D14D41",
+    "green": "#879A39",
+    "yellow": "#D0A215",
+    "blue": "#4385BE",
+    "magenta": "#CE5D97",
+    "cyan": "#3AA99F",
+    "white": "#CECDC3",
+    "foreground": "#CECDC3",
+    "background": "#100F0F"
+  },
+  "terminal_background": "p:background",
+  "console_title_template": "{{ .UserName }}@{{ .HostName }}",
+  "blocks": [
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "p:yellow",
+          "style": "plain",
+          "template": "{{ .UserName }}@{{ .HostName }} ",
+          "type": "session"
+        },
+        {
+          "foreground": "p:blue",
+          "style": "plain",
+          "options": {
+            "style": "full"
+          },
+          "template": "{{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "options": {
+            "branch_icon": "",
+            "fetch_status": true,
+            "fetch_worktree_count": true
+          },
+          "style": "plain",
+          "template": "<p:yellow>git</>:({{ if or (.Working.Changed) (.Staging.Changed) (gt .StashCount 0) }}<p:magenta>{{ .HEAD }}</>{{ else }}<p:green>{{ .HEAD }}</>{{ end }}{{ if (gt .Ahead 0)}}<p:cyan>{{ .BranchStatus }}</>{{ end }}{{ if (gt .Behind 0)}}<p:cyan>{{ .BranchStatus }}</>{{ end }}{{ if .Staging.Changed }} <p:green>{{ .Staging.String }}</>{{ end }}{{ if .Working.Changed }} <p:red>{{ .Working.String }}</>{{ end }})",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "p:foreground",
+          "options": {
+            "always_enabled": true
+          },
+          "style": "plain",
+          "template": "{{ if gt .Code 0 }}<p:red>({{ .Code }}) </>{{ else }}<p:green>({{ .Code }}) </>{{ end }}> ",
+          "type": "status"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "version": 4
+}
