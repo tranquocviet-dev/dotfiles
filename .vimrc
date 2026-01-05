@@ -32,27 +32,50 @@ set cursorline
 set nocompatible
 set autochdir
 set completeopt=longest,menuone
+set guioptions-=m  " menu bar
+set guioptions-=T  " toolbar
+set guioptions-=r  " right-hand scroll bar   
+set laststatus=2
+set noshowmode
+set showtabline=2
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 filetype plugin on
 syntax enable
 
 let mapleader = " "
 nnoremap <Leader>fs :Files<CR>
+nnoremap <Leader>fe :Explore<CR>
 nnoremap <Leader>pu :PlugInstall<CR>
 nnoremap <Leader>fw :update<CR>
 nnoremap <Leader>fo :source<CR>
 nnoremap <Leader>q :quit<CR>
-nnoremap <Leader>fe :Explore<CR>
 nnoremap <Leader>t :tabnew<CR>
 nnoremap <Leader>x :tabclose<CR>
 
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+
 let g:vimwiki_list = [{'syntax': 'markdown',
 			\ 'ext': 'md',
-			\ 'diary_rel_path': './'
+			\ 'diary_rel_path': './',
+			\ 'path': '~/Documents/vimwiki/vimwiki'
 			\ }]
 let g:vimwiki_auto_diary_index = 1
 let g:vimwiki_global_ext = 0
 let g:vimwiki_sync_branch = "main"
+
+let g:lightline = {
+			\ 'colorscheme': 'solarized',
+			\ }
+
+let g:vimfiler_as_default_explorer = 1
 
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -62,9 +85,13 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'vimwiki/vimwiki'
 Plug 'altercation/vim-colors-solarized'
 Plug 'lifepillar/vim-solarized8'
+Plug 'ryanoasis/vim-devicons'
+Plug 'itchyny/lightline.vim'
+Plug 'Shougo/vimfiler.vim'
+Plug 'Shougo/unite.vim'
 call plug#end()
 
-colorscheme solarized8_flat
+colorscheme solarized8
 
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
@@ -82,3 +109,4 @@ if has('nvim')
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
+set guifont=iMWritingMono\ Nerd\ Font\ Mono:h18
