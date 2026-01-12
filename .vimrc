@@ -14,10 +14,11 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 let g:netrw_banner = 0
+set number
+set mouse=a
+" set rnu
 set signcolumn=no
 set background=dark
-set number
-set rnu
 set noexpandtab
 set shiftwidth=4
 set tabstop=4
@@ -27,30 +28,19 @@ set ignorecase
 set smartcase
 set nowrap
 set noswapfile
-set scrolloff=6
-set cursorline
+" set cursorline
 set nocompatible
-set autochdir
 set completeopt=longest,menuone
-set guioptions-=m  " menu bar
-set guioptions-=T  " toolbar
-set guioptions-=r  " right-hand scroll bar   
-set laststatus=2
 set noshowmode
-set showtabline=2
+set showtabline=0
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 filetype plugin on
 syntax enable
 
 let mapleader = " "
-nnoremap <Leader>fs :Files<CR>
-nnoremap <Leader>fe :Explore<CR>
-nnoremap <Leader>pu :PlugInstall<CR>
-nnoremap <Leader>fw :update<CR>
-nnoremap <Leader>fo :source<CR>
-nnoremap <Leader>q :quit<CR>
 nnoremap <Leader>t :tabnew<CR>
 nnoremap <Leader>x :tabclose<CR>
+nnoremap <Leader><CR> :VimwikiTabDropLink<CR>
 
 nnoremap <leader>1 1gt
 nnoremap <leader>2 2gt
@@ -65,33 +55,22 @@ nnoremap <leader>9 9gt
 let g:vimwiki_list = [{'syntax': 'markdown',
 			\ 'ext': 'md',
 			\ 'diary_rel_path': './',
-			\ 'path': '~/Documents/vimwiki/vimwiki'
+			\ 'path': '~/vimwiki'
 			\ }]
 let g:vimwiki_auto_diary_index = 1
 let g:vimwiki_global_ext = 0
 let g:vimwiki_sync_branch = "main"
 
-let g:lightline = {
-			\ 'colorscheme': 'solarized',
-			\ }
-
-let g:vimfiler_as_default_explorer = 1
-
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'vimwiki/vimwiki'
-Plug 'altercation/vim-colors-solarized'
-Plug 'lifepillar/vim-solarized8'
-Plug 'ryanoasis/vim-devicons'
-Plug 'itchyny/lightline.vim'
-Plug 'Shougo/vimfiler.vim'
-Plug 'Shougo/unite.vim'
+Plug 'tinted-theming/tinted-vim'
 call plug#end()
 
-colorscheme solarized8
+let base16colorspace=256
+colorscheme base16-solarized-dark
 
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
@@ -109,4 +88,19 @@ if has('nvim')
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
-set guifont=iMWritingMono\ Nerd\ Font\ Mono:h18
+
+highlight htmlBold gui=bold
+
+augroup markdown_header
+  autocmd!
+  autocmd BufNewFile *.md silent! call InsertMarkdownHeader()
+augroup END
+
+function! InsertMarkdownHeader()
+  " Get the current filename without the extension
+  let filename = expand('%:t:r')
+  " Create the H1 header string
+  let header = "# " . filename . "\n\n"
+  " Insert the header at the beginning of the file
+  call append(0, split(header, '\n'))
+endfunction
