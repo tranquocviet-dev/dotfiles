@@ -1,0 +1,35 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("c:/Users/" . "Admin/")
+ ("c:/" . "Users/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "c:/Users/Admin/.emacs.d/"
+ "c:/Users/Admin/"
+ "c:/Users/Admin/org/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "init.el"
+ "test.c"
+ "yixuan01_takeaways.org"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("c:/Users/Admin/.emacs.d/" (27012 37907 0 0) "init.el~" "init.el" "ido.last~" "ido.last" "elpa/" "eln-cache/" "autoload/" "auto-save-list/" ".emacs.custom.el~" ".emacs.custom.el" "../" "./")
+
+ ("c:/Users/Admin/" (27012 37073 0 0) "~/" "_viminfo" "web.html" "vimways.txt" "vimgit.vim" "vimfiles/" "Videos/" "Untitled" "test.typ" "test.txt" "test.py" "test.pdf" "test.org~" "test.org" "test.js" "test.html" "test.c~" "test.c" "Templates/" "Start Menu/" "sensitivity.txt" "SendTo/" "Searches/" "scoop/" "Saved Games/" "rose-pine/" "Recent/" "Proton Drive/" "PrintHood/" "Pictures/" "org/" "OneDrive/" "ntuser.ini" "NTUSER.DAT{40a7eee8-c3fc-11ef-b691-70089488cea2}.TMContainer00000000000000000002.regtrans-ms" "NTUSER.DAT{40a7eee8-c3fc-11ef-b691-70089488cea2}.TMContainer00000000000000000001.regtrans-ms" "NTUSER.DAT{40a7eee8-c3fc-11ef-b691-70089488cea2}.TM.blf" "ntuser.dat.LOG2" "ntuser.dat.LOG1" "NTUSER.DAT" "NITEC_login.py" "newfolder/" "New Text Document.txt" "NetHood/" "My Documents/" "Music/" "Muse Hub/" "Local Settings/" "Links/" "komorebi.json" "komorebi.bar.json" "Kemono-Downloader/" "flexoki.omp.json" "flexoki-light.omp.json" "Favorites/" "ex3.typ" "ex3.txt" "ex3.pdf" "Downloads/" "dorion/" "Documents/" "Desktop/" "Cookies/" "Contacts/" "battery-report.html" "applications.json" "Application Data/" "AppData/" "ansel/" ".xdm-app-data/" ".wezterm.lua" ".vscode/" ".vimrc~" ".vimrc" ".viminfo" ".vim/" ".rustup/" ".python_history" ".nvm/" ".node_repl_history" ".mputils/" ".matplotlib/" ".local/" ".Ld9VirtualBox/" ".glzr/" ".gitconfig" ".git/" ".ftb/" ".emacs.d/" ".dotnet/" ".dbus-keyrings/" ".config/" ".chocolatey/" ".cargo/" ".cache/" ".bun/" ".bash_profile" ".bash_history" ".bashrc" ".affinity/" "..vimrc.un~" "../" "./")
+
+ ("c:/Users/" (26742 47852 0 0) "Public/" "desktop.ini" "Default User/" "Default/" "All Users/" "Admin/" "../" "./")
+
+ ("c:/Users/Admin/org/" (27011 1587 0 0) "yixuan01_takeaways.typ" "yixuan01_takeaways.pdf" "yixuan01_takeaways.org~" "yixuan01_takeaways.org" "yixuan01_takeaways.html" "2026-01-31-atm10.org~" "2026-01-31-atm10.org" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t
