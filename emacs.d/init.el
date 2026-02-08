@@ -61,3 +61,13 @@
   (next-line 1)
   )
 (global-set-key (kbd "C-,") 'dupe-line)
+
+(defun kill-line()
+  (interactive)
+  (delete-line)
+  )
+(global-set-key (kbd "C-.") 'kill-line)
+(require 'whitespace)
+(setq-default whitespace-style
+          '(face spaces tabs spaces-mark tab-mark))
+(global-whitespace-mode 1)
