@@ -1,7 +1,6 @@
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (transient-mark-mode 1)
 (setq default-directory "C:/Users/Admin/")
-(global-display-line-numbers-mode)
 (setq inhibit-startup-screen t)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -33,7 +32,7 @@
 (use-package ox-typst
   :after org)
 (setq display-line-numbers-type 'relative)
-(global-display-line-numbers-mode +1)
+;; (global-display-line-numbers-mode +1)
 (set-face-attribute 'default nil :font "Iosevka NF-20")
 
 (add-to-list 'load-path "C:/Users/Admin/.emacs.d/autoload/")
@@ -71,3 +70,4 @@
 (setq-default whitespace-style
           '(face spaces tabs spaces-mark tab-mark))
 (global-whitespace-mode 1)
+
