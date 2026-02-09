@@ -71,3 +71,5 @@
           '(face spaces tabs spaces-mark tab-mark))
 (global-whitespace-mode 1)
 
+(setq-default toggle-truncate-lines 1)
+(setq-default visual-line-mode 1)
