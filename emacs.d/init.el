@@ -1,6 +1,5 @@
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (transient-mark-mode 1)
-(setq default-directory "C:/Users/Admin/")
 (setq inhibit-startup-screen t)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -15,7 +14,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(gruber-darker))
+ '(custom-enabled-themes '(modus-vivendi))
  '(custom-safe-themes
    '("e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7"
      default))
@@ -73,3 +72,4 @@
 
 (setq-default toggle-truncate-lines 1)
 (setq-default visual-line-mode 1)
+
